@@ -1,7 +1,9 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import css from "./UserList.module.css";
 
 export default function UserList({ users }) {
+  const location = useLocation();
+
   return (
     <ul className={css.list}>
       {users.map((user) => (
@@ -11,7 +13,11 @@ export default function UserList({ users }) {
           </h3>
           <p className={css.text}>{user.email}</p>
           <p className={css.text}>{user.phone}</p>
-          <Link to={`/dashboard/${user.id}`} className={css.link}>
+          <Link
+            to={`/dashboard/${user.id}`}
+            className={css.link}
+            state={location}
+          >
             Details
           </Link>
         </li>
